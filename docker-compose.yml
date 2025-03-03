@@ -9,21 +9,23 @@ services:
     environment:
       - BRAVE_API_KEY=${BRAVE_API_KEY}
 
-  stripe:
-    build: ./stripe
-    ports:
-      - "8001:8001"
-    env_file:
-      - ./.env
-    environment:
-      - STRIPE_API_KEY=${STRIPE_API_KEY}
-
-  supabase:
-    build: ./supabase
+  github:
+    build: ./github
     ports:
       - "8002:8002"
     env_file:
       - ./.env
     environment:
-      - SUPABASE_URL=${SUPABASE_URL}
-      - SUPABASE_KEY=${SUPABASE_KEY}
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+
+  fetch:
+    build: ./fetch
+    ports:
+      - "8003:8003"
+
+  memory:
+    build: ./memory
+    ports:
+      - "8004:8004"
+    volumes:
+      - ./memory-data:/app/data
