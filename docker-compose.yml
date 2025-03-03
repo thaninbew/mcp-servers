@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  brave-search:
+    build: ./brave-search
+    ports:
+      - "8000:8000"
+    environment:
+      BRAVE_API_KEY: your-brave-api-key
+
+  supabase:
+    build: ./supabase
+    ports:
+      - "8001:8001"
+
+  stripe:
+    build: ./stripe
+    ports:
+      - "8002:8002"
+    environment:
+      STRIPE_API_KEY: your-stripe-api-key
