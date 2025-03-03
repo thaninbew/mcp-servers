@@ -4,17 +4,26 @@ services:
     build: ./brave-search
     ports:
       - "8000:8000"
+    env_file:
+      - ./.env
     environment:
-      BRAVE_API_KEY: your-brave-api-key
-
-  supabase:
-    build: ./supabase
-    ports:
-      - "8001:8001"
+      - BRAVE_API_KEY=${BRAVE_API_KEY}
 
   stripe:
     build: ./stripe
     ports:
-      - "8002:8002"
+      - "8001:8001"
+    env_file:
+      - ./.env
     environment:
-      STRIPE_API_KEY: your-stripe-api-key
+      - STRIPE_API_KEY=${STRIPE_API_KEY}
+
+  supabase:
+    build: ./supabase
+    ports:
+      - "8002:8002"
+    env_file:
+      - ./.env
+    environment:
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
