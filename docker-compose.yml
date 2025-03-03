@@ -1,27 +1,21 @@
-version: '3.8'
 services:
   brave-search:
     build: ./brave-search
     ports:
       - "8000:8000"
-    env_file:
-      - ./.env
+    env_file: ./.env
     environment:
       - BRAVE_API_KEY=${BRAVE_API_KEY}
+    restart: unless-stopped
 
   github:
     build: ./github
     ports:
       - "8002:8002"
-    env_file:
-      - ./.env
+    env_file: ./.env
     environment:
       - GITHUB_TOKEN=${GITHUB_TOKEN}
-
-  fetch:
-    build: ./fetch
-    ports:
-      - "8003:8003"
+    restart: unless-stopped
 
   memory:
     build: ./memory
@@ -29,3 +23,4 @@ services:
       - "8004:8004"
     volumes:
       - ./memory-data:/app/data
+    restart: unless-stopped
